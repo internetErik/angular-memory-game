@@ -1,0 +1,21 @@
+@import "site/variables";
+
+* {
+	box-sizing: border-box;
+}
+
+@import "components/memory-card";
+
+button {
+	font-size: 1.5em;	
+	height: 75px;
+	width: 300px;
+	text-align: center;
+}
+
+input {
+	font-size: 1.5em;
+	height: 75px;
+	width: 500px;
+	padding: 10px;
+}

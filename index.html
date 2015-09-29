@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Memory</title>
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+<body ng-app="app">
+	<section ng-controller="wordEntryController">
+		<div ng-hide="gameStarted">
+			<input type="text" 
+				ng-keypress="submitWordsInput($event)"
+				ng-model="wordInput">
+
+			<button ng-click="setWords()">Set Words</button>
+
+			<div>
+				<ul>
+					<li>Please enter at least four words</li>
+					<li>Words must be fewer than eight characters</li>
+				</ul>
+			</div>
+		</div>
+
+		<div 
+			class="memory-game"
+			ng-show="words.length > 0"
+			ng-controller="memoryGameController">
+			
+			<div class="attempt-count" ng-show="attempts > 0">
+				Number of attempts: {{attempts}}
+			</div>
+
+			<div>
+				<div 
+					class="memory-card"
+					ng-repeat="word in words"
+					ng-click="selectCard(word)"
+					ng-class="{'flipped': word.selected, 'matched': word.matched}">
+					<div class="card">
+						<span class="front"></span>
+						<span class="back">{{word.word}}</span>
+					</div>
+
+				</div>
+			</div>
+			<div>
+				<button
+					ng-show="finished" 
+					ng-click="resetGame()">Play Again</button>
+			</div>
+		</div>
+	</section>
+
+	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="js/app/app.js"></script>
+	<script type="text/javascript" src="js/app/controllers/wordEntryController.js"></script>
+	<script type="text/javascript" src="js/app/controllers/memoryGameController.js"></script>
+	<script type="text/javascript" src="js/app/factories/memoryCardService.js"></script>
+</body>
+</html>
